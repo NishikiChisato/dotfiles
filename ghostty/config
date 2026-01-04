@@ -1,0 +1,29 @@
+font-size = 14
+font-feature = -calt
+font-feature = -liga
+font-family = "Maple Mono"
+
+window-vsync = true
+shell-integration-features = no-cursor,no-sudo,no-title
+
+# cursor-style = block
+custom-shader = shaders/cursor_wrap.glsl
+
+background-opacity = 0.75
+background-blur-radius = 10
+macos-titlebar-style = hidden
+macos-option-as-alt = left
+
+adjust-cursor-thickness = 1
+
+theme = TokyoNight Night
+
+# focus-follows-mouse = true
+copy-on-select = true
+
+keybind = super+d=new_split:right
+keybind = super+shift+d=new_split:down
+keybind = super+ctrl+h=goto_split:left
+keybind = super+ctrl+l=goto_split:right
+keybind = super+ctrl+k=goto_split:up
+keybind = super+ctrl+j=goto_split:down
