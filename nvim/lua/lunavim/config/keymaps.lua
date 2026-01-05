@@ -3,21 +3,21 @@ local M = {}
 local generic_opts_any = { noremap = true, silent = true }
 
 local generic_opts = {
-  insert_mode = generic_opts_any,
-  normal_mode = generic_opts_any,
-  visual_mode = generic_opts_any,
+  insert_mode       = generic_opts_any,
+  normal_mode       = generic_opts_any,
+  visual_mode       = generic_opts_any,
   visual_block_mode = generic_opts_any,
-  command_mode = generic_opts_any,
-  term_mode = { silent = true }
+  command_mode      = generic_opts_any,
+  term_mode         = { silent = true }
 }
 
 local mode_adapter = {
-  insert_mode = "i",
-  normal_mode = "n",
-  visual_mode = "v",
+  insert_mode       = "i",
+  normal_mode       = "n",
+  visual_mode       = "v",
   visual_block_mode = "x",
-  command_mode = "c",
-  term_mode = "t"
+  command_mode      = "c",
+  term_mode         = "t"
 }
 
 local mode_radapter = {}
@@ -31,16 +31,38 @@ end
 local defaults = {
   normal_mode = {
     -- Cursor movement
-    ["<C-H>"] = "<C-w>h",
-    ["<C-J>"] = "<C-w>j",
-    ["<C-K>"] = "<C-w>k",
-    ["<C-L>"] = "<C-w>l",
+    ["<C-H>"] = { "<C-W>h", { desc = "Move cursor left"  } },
+    ["<C-J>"] = { "<C-W>j", { desc = "Move cursor down"  } },
+    ["<C-K>"] = { "<C-W>k", { desc = "Move cursor up"    } },
+    ["<C-L>"] = { "<C-W>l", { desc = "Move cursor right" } },
+
+    -- Split create
+    ["<leader>sv"] = { "<C-w>v"         , { desc = "Split window vertically" } },
+    ["<leader>sh"] = { "<C-w>s"         , { desc = "Split window horizontally" } },
+    ["<leader>se"] = { "<C-w>="         , { desc = "Make split equal size" } },
+    ["<leader>sx"] = { ":close<Return>" , { desc = "Close current split" } },
 
     -- Split resize
-    ["<C-S-Up>"] = ":resize -2<Return>",
-    ["<C-S-Down>"] = ":resize +2<Return>",
-    ["<C-S-Left>"] = ":vertical resize -2<Return>",
-    ["<C-S-Right>"] = ":vertical resize +2<Return>",
+    ["<C-S-Up>"]    = { ":resize   -2<Return>" , { desc = "Expand split to top" } },
+    ["<C-S-Down>"]  = { ":resize   +2<Return>" , { desc = "Expand split to wodn" } },
+    ["<C-S-Left>"]  = { ":vertical resize -2<Return>", { desc = "Expand split to left" } },
+    ["<C-S-Right>"] = { ":vertical resize +2<Return>", { desc = "Expand split to right" } },
+
+    -- Tab create
+    ["<leader>to"] = { ":tabnew<Return>",   { desc = "Open  a new tab" } },
+    ["<leader>tx"] = { ":tabclose<Return>", { desc = "Close a new tab" } },
+
+    -- Tab movement
+    ["<A-h>"] = { "gt", { desc = "Goto next tab" } },
+    ["<A-l>"] = { "gT", { desc = "Goto prev tab" } },
+
+    -- Move tabs
+    ["<A-S-h>"] = { ":tabm -1<Return>", { desc = "Move tab to left" } },
+    ["<A-S-l>"] = { ":tabm +1<Return>", { desc = "Move tab to right" } },
+
+    -- tags
+    ["<C-P>"] = { "<C-I>", { desc = "Jump to next" } },
+    ["<C-N>"] = { "<C-O>", { desc = "Jump to prev" } },
   },
 
   insert_mode = {
@@ -59,7 +81,9 @@ local defaults = {
 function M.set_keymaps(mode, key, val)
   local opts = generic_opts[mode_radapter[mode]] or generic_opts_any
   if type(val) == "table" then
-    opts = val[2]
+    if val[2] ~= nil then
+      opts = vim.tbl_deep_extend("force", opts, val[2])
+    end
     val = val[1]
   end
   if val then

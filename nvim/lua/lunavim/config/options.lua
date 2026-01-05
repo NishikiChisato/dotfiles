@@ -2,65 +2,80 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- Number of spaes that a <Tab> counts
+vim.opt.tabstop = 2
+-- Number of spaces to use for each step of indent
+vim.opt.shiftwidth = 2
+-- Use a approriate number of spaces to insert a <Tab>
+vim.opt.expandtab = true
+-- Copy indent from current line when starting a new line
+vim.opt.autoindent = true
+
 -- Make line numbers default
-vim.o.number = true
+vim.opt.number = true
 -- Make line relative number default
-vim.o.relativenumber = true
+vim.opt.relativenumber = true
+
+-- Don't wrap line
+vim.opt.wrap = false
 
 -- Enable mouse mode
-vim.o.mouse = 'a'
+vim.opt.mouse = 'a'
 -- Enable mouse movement event
-vim.o.mousemoveevent = true
+-- vim.opt.mousemoveevent = true
 
 -- We don't need to show the current mode, since it's already in the status line
-vim.o.showmode = false
+vim.opt.showmode = false
+
+-- Stack layout for tags
+-- vim.opt.jumpoptions = "stack"
 
 -- Sync clipboard between OS and Neovim
 -- We need invoke vim.schedule, since we don't hope this behavior breaks something else that Nvim is doing
 vim.schedule(function()
-	vim.o.clipboard = 'unnamedplus'
+	vim.opt.clipboard = 'unnamedplus'
 end)
 
 -- Enable break indent
-vim.o.breakindent = true
+vim.opt.breakindent = true
 
 -- Enable undo history
-vim.o.undofile = true
+vim.opt.undofile = true
 
 -- Case-insensitive earching unless \C or one or more capital letters in the search term
-vim.o.ignorecase = true
-vim.o.smartcase = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 -- Always enable sign column
-vim.o.signcolumn = 'yes'
+vim.opt.signcolumn = 'yes'
 
 -- Decrease time for swap file saving
-vim.o.updatetime = 250
+vim.opt.updatetime = 250
 
 -- Decrease mapped sequence wait time
-vim.timeoutlen = 300
+vim.opt.timeoutlen = 300
+vim.opt.ttimeoutlen = 0
 
 -- Configure how new splits should be opened
-vim.o.splitright = true
-vim.o.splitbelow = true
+vim.opt.splitright = true
+vim.opt.splitbelow = true
 
 -- show the effects of substitutions
-vim.o.inccommand = 'split'
+vim.opt.inccommand = 'split'
 
 -- Show which line the cursor is on
-vim.o.cursorline = true
+vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor
-vim.o.scrolloff = 8
+vim.opt.scrolloff = 8
+vim.opt.sidescrolloff = 8
 
 -- Raise a dialog asking if we wish to save the current files
--- vim.o.confirm = true
+vim.opt.confirm = true
 
--- Number of spaes that a <Tab> counts
-vim.o.tabstop = 2
--- Number of spaces to use for each step of indent
-vim.o.shiftwidth = 2
--- Use a approriate number of spaces to insert a <Tab>
-vim.o.expandtab = true
--- Copy indent from current line when starting a new line
-vim.o.autoindent = true
+-- Turm on termguicolors for tokyonight colorscheme to work. must have to use true color terminal
+vim.opt.termguicolors = true
+-- Background can be "light" or "dark"
+vim.opt.background = "dark"
+-- Show sign column so that text doesn't shift
+vim.opt.signcolumn = "yes"

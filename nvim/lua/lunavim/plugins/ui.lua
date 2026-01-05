@@ -11,12 +11,24 @@ return {
         sidebars = "transparent",
         floats = "transparent",
       },
+      on_highlights = function(hl, c)
+        -- Basic UI
+        hl.FloatBorder = { fg = c.blue, bg = "NONE" }
+        hl.NormalFloat = { bg = "NONE" }
+        hl.CursorLine = { bg = c.bg_highlight }
+
+        -- Bufferline
+        hl.BufferLineFill = { bg = "NONE" } 
+        hl.BufferLineBackground = { bg = "NONE" }
+
+        hl.BufferLineSeparator = { fg = c.bg, bg = "NONE" }
+        hl.BufferLineSeparatorVisible = { fg = c.bg, bg = "NONE" }
+        hl.BufferLineSeparatorSelected = { fg = c.bg, bg = "NONE" }
+
+        hl.BufferLineBufferSelected = { bg = "NONE", fg = c.fg, bold = true }
+        hl.BufferLineTabSelected = { bg = "NONE", fg = c.fg, bold = true }
+      end,
     },
-    on_highlights = function(hl, c)
-      hl.FloatBorder = { fg = c.blue, bg = "NONE" }
-      hl.NormalFloat = { bg = "NONE" }
-      hl.CursorLine = { bg = c.bg_highlight }
-    end,
     config = function(_, opts)
       require "tokyonight".setup(opts)
       vim.cmd[[colorscheme tokyonight]]
@@ -47,17 +59,20 @@ return {
     event = "VeryLazy",
     opts = {
       options = {
-        mode = "tab",
+        mode = "tabs",
         separator_style = "slant",
         diagnostics = "nvim_lsp",
+        show_buffer_close_icon = false,
+        show_close_icon = false,
+        themable = true,
+        offsets = {
+          { filetype = "neo-tree", text = "File Explorer", text_align = "left", separator = true }
+        },
         diagnostics_indicator = function(count, level)
           local icons = LunaVim.icons.diagnostics
           local icon = level:match("error") and icons.Error or icons.Warn
           return " " .. icon .. count
         end,
-        offsets = {
-          { filetype = "neo-tree", text = "File Explorer", text_align = "left", separator = true }
-        },
       },
     },
   },
@@ -147,7 +162,7 @@ return {
       },
     },
   },
-    {
+  {
     "folke/snacks.nvim",
     priority = 1000,
     lazy = false,
@@ -171,4 +186,59 @@ return {
       { "<leader>z",  function() Snacks.zen() end, desc = "Toggle Zen Mode" },
     },
   },
-}
+  {
+    "karb94/neoscroll.nvim",
+    event = "WinScrolled",
+    config = function()
+      require('neoscroll').setup({
+        mappings = { '<C-u>', '<C-d>', '<C-b>', '<C-f>', '<C-y>', '<C-e>', 'zt', 'zz', 'zb' },
+        pre_hook = function(info) if info == "cursorline" then vim.wo.cursorline = false end end,
+        post_hook = function(info) if info == "cursorline" then vim.wo.cursorline = true end end,
+        hide_cursor = false,
+        stop_eof = true,
+        respect_scrolloff = true,
+        cursor_scroll_step = 8,
+        easing = "quadratic",
+      })
+    end,
+  },
+  {
+    "HiPhish/rainbow-delimiters.nvim",
+    event = "LspAttach",
+  },
+  -- {
+    --   "nvim-focus/focus.nvim",
+    --   version = false,
+    --   event = "WinEnter",
+    --   opts = {
+      --     enable = true,
+      --     commands = true,
+      --     autoresize = {
+        --       enable = true,
+        --       width = 0,
+        --       height = 0,
+        --       min_width = 20,
+        --     },
+        --     ui = {
+          --       number = false,
+          --       relativenumber = false,
+          --       cursorline = true,
+          --       signcolumn = true,
+          --       winhighlight = false,
+          --     },
+          --   },
+          --   config = function(_, opts)
+            --     require("focus").setup(opts)
+            --     local ignore_filetypes = { 'neo-tree', 'TelescopePrompt', 'Trouble', 'lazy', 'mason' }
+            --     local augroup = vim.api.nvim_create_augroup('FocusDisable', { clear = true })
+            --     vim.api.nvim_create_autocmd('FileType', {
+              --       group = augroup,
+              --       callback = function(_)
+                --         if vim.tbl_contains(ignore_filetypes, vim.bo.filetype) then
+                --           vim.b.focus_disable = true
+                --         end
+                --       end,
+                --     })
+                --   end,
+                -- },
+              }
