@@ -1,7 +1,8 @@
 font-size = 14
 font-feature = -calt
 font-feature = -liga
-font-family = "Maple Mono"
+# font-family = "Maple Mono"
+font-family = "Maple Mono NF CN"
 
 window-vsync = true
 shell-integration-features = no-cursor,no-sudo,no-title
