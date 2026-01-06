@@ -1,9 +1,9 @@
 require "lunavim.config.options"
-require "lunavim.config.keymaps".load_defaults()
-
 _G.LunaVim = {}
 _G.LunaVim.icons = require "lunavim.config.icons"
-local util = require "lunavim.util"
+_G.LunaVim.util = require "lunavim.util"
+require "lunavim.config.keymaps".load_defaults()
+_G.LunaVim.plugin_keymaps = require "lunavim.config.keymaps".plugin_keymaps
 
 local defaults = require "lunavim.config.keymaps".get_defaults()
 local mode_adapter = require "lunavim.config.keymaps".get_adapter()

@@ -178,13 +178,7 @@ return {
       git = { enabled = true },
       lazygit = { enabled = true },
     },
-    keys = {
-      { "<leader>n",  function() Snacks.notifier.show_history() end, desc = "Notification History" },
-      { "<leader>un", function() Snacks.notifier.hide() end, desc = "Dismiss All Notifications" },
-      { "<leader>gG", function() Snacks.lazygit() end, desc = "Lazygit" },
-      { "<leader>tt", function() Snacks.terminal() end, desc = "Toggle Terminal" },
-      { "<leader>z",  function() Snacks.zen() end, desc = "Toggle Zen Mode" },
-    },
+    keys = LunaVim.plugin_keymaps "snacks.nvim",
   },
   {
     "karb94/neoscroll.nvim",

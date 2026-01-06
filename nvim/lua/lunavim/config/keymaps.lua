@@ -78,6 +78,41 @@ local defaults = {
   },
 }
 
+local plugins = {
+  ["snacks.nvim"] = {
+    { "<leader>hs", function() Snacks.notifier.show_history() end, desc = "Notification History"  },
+    { "<leader>nd", function() Snacks.notifier.hide()         end, desc = "Dismiss      All       Notifications" },
+    { "<leader>lg", function() Snacks.lazygit()               end, desc = "Lazygit"     },
+    { "<leader>tt", function() Snacks.terminal()              end, desc = "Toggle       Terminal" },
+    { "<leader>z",  function() Snacks.zen()                   end, desc = "Toggle       Zen       Mode"          },
+  },
+  ["nvim-cmp"] = {
+    ["<C-k>"] = function(...) return (require"cmp".mapping.select_prev_item())(...) end,
+    ["<C-j>"] = function(...) return (require"cmp".mapping.select_next_item())(...) end,
+    ["<C-h>"] = function(...) return (require"cmp".mapping.complete())(...) end,
+    ["<C-e>"] = function(...) return (require"cmp".mapping.abort())(...) end,
+    ["<CR>"]  = function(...) return (require"cmp".mapping.confirm({ select = true }))(...) end,
+  },
+  ["mini.surround"] = {
+    add            = "sa", -- add:     sa + textobj + sign
+    delete         = "sd", -- del:     sd + sign
+    replace        = "sr", -- replqce: sr + old sign + new sign 
+    find           = "sn", -- find:    sn + textobj
+    find_left      = "sp", -- rfind:   sp + textobj
+    highlight      = "sh", -- highlight: sh + textobj
+  },
+  ["treesj"] = {
+    { "<leader>tj", "<CMD>TSJToggle<Return>", desc = "Toggle split/join code" },
+  },
+  ["yanky.nvim"] = {
+        { "<leader>p", "<cmd>YankyRingHistory<cr>", mode = { "n", "x" }, desc = "Open Yank History" },
+        { "y", "<Plug>(YankyYank)", mode = { "n", "x" }, desc = "Yank text" },
+        { "p", "<Plug>(YankyPutAfter)", mode = { "n", "x" }, desc = "Put yanked text after cursor" },
+        { "P", "<Plug>(YankyPutBefore)", mode = { "n", "x" }, desc = "Put yanked text before cursor" },
+  },
+}
+
+
 function M.set_keymaps(mode, key, val)
   local opts = generic_opts[mode_radapter[mode]] or generic_opts_any
   if type(val) == "table" then
@@ -127,6 +162,19 @@ function M.clear_mappings(mappings)
       end
     end
   end
+end
+
+function M.get_plguins()
+  return plugins
+end
+
+function M.plugin_keymaps(plugin_name)
+  local plugins = M.get_plguins()
+  if plugins[plugin_name] == nil then
+    error(("plugin: %s don't have keymaps"):format(plugin_name))
+    return
+  end
+  return M.get_plguins()[plugin_name]
 end
 
 return M
