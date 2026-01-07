@@ -12,10 +12,16 @@ return {
       "rafamadriz/friendly-snippets",
     },
 
-    config = function()
-      local cmp = require "cmp"
-      local luasnip = require "luasnip"
-      require "luasnip.loaders.from_vscode".lazy_load()
+    config = function(_, opts)
+      opts.sources = opts.sources or {}
+      table.insert(opts.sources, {
+        name = "lazydev",
+        group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+      })
+
+      local cmp = require("cmp")
+      local luasnip = require("luasnip")
+      require("luasnip.loaders.from_vscode").lazy_load()
       cmp.setup({
         snippet = {
           expand = function(args)
@@ -32,12 +38,12 @@ return {
             winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
           }),
         },
-        mapping = cmp.mapping.preset.insert(LunaVim.plugin_keymaps "nvim-cmp"),
+        mapping = cmp.mapping.preset.insert(LunaVim.plugin_keymaps("nvim-cmp")),
         sources = cmp.config.sources({
           { name = "nvim_lsp", priority = 1000 },
-          { name = "luasnip",  priority = 750 },
-          { name = "buffer",   priority = 500 },
-          { name = "path",     priority = 250 },
+          { name = "luasnip", priority = 750 },
+          { name = "buffer", priority = 500 },
+          { name = "path", priority = 250 },
         }),
         formatting = {
           fields = { "kind", "abbr", "menu" },
@@ -48,9 +54,9 @@ return {
             end
             item.menu = ({
               nvim_lsp = "[LSP]",
-              luasnip  = "[Snippet]",
-              buffer   = "[Buf]",
-              path     = "[Path]",
+              luasnip = "[Snippet]",
+              buffer = "[Buf]",
+              path = "[Path]",
             })[entry.source.name]
             return item
           end,
@@ -74,7 +80,7 @@ return {
     "nvim-mini/mini.surround",
     event = "VeryLazy",
     opts = {
-      mappings = LunaVim.plugin_keymaps "mini.surround",
+      mappings = LunaVim.plugin_keymaps("mini.surround"),
     },
   },
   -- Extend text object
@@ -101,7 +107,7 @@ return {
   },
   {
     "Wansmer/treesj",
-    keys = LunaVim.plugin_keymaps "treesj",
+    keys = LunaVim.plugin_keymaps("treesj"),
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     opts = {
       use_default_keymaps = false,

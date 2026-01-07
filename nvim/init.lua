@@ -1,6 +1,6 @@
 require "lunavim.util"
 require "lunavim.config"
-require "lunavim.lazy"
+-- require "lunavim.lazy"
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 

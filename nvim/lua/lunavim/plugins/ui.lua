@@ -18,7 +18,7 @@ return {
         hl.CursorLine = { bg = c.bg_highlight }
 
         -- Bufferline
-        hl.BufferLineFill = { bg = "NONE" } 
+        hl.BufferLineFill = { bg = "NONE" }
         hl.BufferLineBackground = { bg = "NONE" }
 
         hl.BufferLineSeparator = { fg = c.bg, bg = "NONE" }
@@ -27,11 +27,16 @@ return {
 
         hl.BufferLineBufferSelected = { bg = "NONE", fg = c.fg, bold = true }
         hl.BufferLineTabSelected = { bg = "NONE", fg = c.fg, bold = true }
+
+        -- Treesitter context
+        hl.TreesitterContext = { bg = "NONE", fg = c.blue1 }
+        hl.TreesitterContextBottom = { underline = true, sp = c.blue5 }
+        hl.TreesitterContextLineNumber = { bg = "NONE", fg = c.comment }
       end,
     },
     config = function(_, opts)
-      require "tokyonight".setup(opts)
-      vim.cmd[[colorscheme tokyonight]]
+      require("tokyonight").setup(opts)
+      vim.cmd([[colorscheme tokyonight]])
     end,
   },
   -- statue line
@@ -49,7 +54,7 @@ return {
           lualine_b = { { "branch", icon = LunaVim.icons.git.Branch }, { "diff", symbols = LunaVim.icons.git } },
           lualine_c = { { "diagnostics", symbols = LunaVim.icons.diagnostics } },
           lualine_x = { "encoding", "fileformat", "filetype" },
-        }
+        },
       },
     },
   },
@@ -66,7 +71,7 @@ return {
         show_close_icon = false,
         themable = true,
         offsets = {
-          { filetype = "neo-tree", text = "File Explorer", text_align = "left", separator = true }
+          { filetype = "neo-tree", text = "File Explorer", text_align = "left", separator = true },
         },
         diagnostics_indicator = function(count, level)
           local icons = LunaVim.icons.diagnostics
@@ -94,8 +99,8 @@ return {
     event = "BufReadPre",
     priority = 1200,
     config = function()
-      local devicons = require "nvim-web-devicons"
-      require("incline").setup {
+      local devicons = require("nvim-web-devicons")
+      require("incline").setup({
         window = {
           padding = 0,
           margin = { horizontal = 0, vertical = 0 },
@@ -104,7 +109,9 @@ return {
         },
         render = function(props)
           local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
-          if filename == "" then filename = "[No Name]" end
+          if filename == "" then
+            filename = "[No Name]"
+          end
           local ft_icon, ft_color = devicons.get_icon_color(filename)
           local modified = vim.bo[props.buf].modified
 
@@ -117,8 +124,8 @@ return {
             { " ", guibg = "NONE" },
           }
         end,
-      }
-    end
+      })
+    end,
   },
   -- Lspsaga
   {
@@ -167,72 +174,62 @@ return {
     priority = 1000,
     lazy = false,
     opts = {
-      input = { enabled = true },
-      select = { enabled = true },
-      notifier = { enabled = true, timeout = 3000, style = "fancy" },
-      dashboard = { enabled = true },
-      indent = { enabled = true },
       bigfile = { enabled = true },
-      quickfile = { enabled = true },
+      dashboard = { enabled = true },
+      indent = { enabled = true, animate = { enabled = true } },
+      notifier = { enabled = true, timeout = 5000 },
+      input = { enabled = true },
+      picker = { enabled = true },
+      -- explorer = { enabled = true },
       terminal = { enabled = true },
-      git = { enabled = true },
-      lazygit = { enabled = true },
+      words = { enabled = true },
+      statuscolumn = { enabled = true },
+      scroll = { enabled = true },
+      scope = { enabled = true },
+      styles = {
+        notification = { bg = "NONE", wo = { wrap = true } },
+        picker = { border = "rounded" },
+      },
     },
-    keys = LunaVim.plugin_keymaps "snacks.nvim",
-  },
-  {
-    "karb94/neoscroll.nvim",
-    event = "WinScrolled",
-    config = function()
-      require('neoscroll').setup({
-        mappings = { '<C-u>', '<C-d>', '<C-b>', '<C-f>', '<C-y>', '<C-e>', 'zt', 'zz', 'zb' },
-        pre_hook = function(info) if info == "cursorline" then vim.wo.cursorline = false end end,
-        post_hook = function(info) if info == "cursorline" then vim.wo.cursorline = true end end,
-        hide_cursor = false,
-        stop_eof = true,
-        respect_scrolloff = true,
-        cursor_scroll_step = 8,
-        easing = "quadratic",
-      })
-    end,
+    keys = LunaVim.plugin_keymaps("snacks.nvim"),
   },
   {
     "HiPhish/rainbow-delimiters.nvim",
     event = "LspAttach",
   },
   -- {
-    --   "nvim-focus/focus.nvim",
-    --   version = false,
-    --   event = "WinEnter",
-    --   opts = {
-      --     enable = true,
-      --     commands = true,
-      --     autoresize = {
-        --       enable = true,
-        --       width = 0,
-        --       height = 0,
-        --       min_width = 20,
-        --     },
-        --     ui = {
-          --       number = false,
-          --       relativenumber = false,
-          --       cursorline = true,
-          --       signcolumn = true,
-          --       winhighlight = false,
-          --     },
-          --   },
-          --   config = function(_, opts)
-            --     require("focus").setup(opts)
-            --     local ignore_filetypes = { 'neo-tree', 'TelescopePrompt', 'Trouble', 'lazy', 'mason' }
-            --     local augroup = vim.api.nvim_create_augroup('FocusDisable', { clear = true })
-            --     vim.api.nvim_create_autocmd('FileType', {
-              --       group = augroup,
-              --       callback = function(_)
-                --         if vim.tbl_contains(ignore_filetypes, vim.bo.filetype) then
-                --           vim.b.focus_disable = true
-                --         end
-                --       end,
-                --     })
-                --   end,
-                -- },
-              }
+  --   "nvim-focus/focus.nvim",
+  --   version = false,
+  --   event = "WinEnter",
+  --   opts = {
+  --     enable = true,
+  --     commands = true,
+  --     autoresize = {
+  --       enable = true,
+  --       width = 0,
+  --       height = 0,
+  --       min_width = 20,
+  --     },
+  --     ui = {
+  --       number = false,
+  --       relativenumber = false,
+  --       cursorline = true,
+  --       signcolumn = true,
+  --       winhighlight = false,
+  --     },
+  --   },
+  --   config = function(_, opts)
+  --     require("focus").setup(opts)
+  --     local ignore_filetypes = { 'neo-tree', 'TelescopePrompt', 'Trouble', 'lazy', 'mason' }
+  --     local augroup = vim.api.nvim_create_augroup('FocusDisable', { clear = true })
+  --     vim.api.nvim_create_autocmd('FileType', {
+  --       group = augroup,
+  --       callback = function(_)
+  --         if vim.tbl_contains(ignore_filetypes, vim.bo.filetype) then
+  --           vim.b.focus_disable = true
+  --         end
+  --       end,
+  --     })
+  --   end,
+  -- },
+}
