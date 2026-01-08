@@ -1,11 +1,8 @@
 local M = {}
 
 M.clangd = {
-  keys = {
-    { "<leader>ch", "<cmd>ClangdSwitchSourceHeader<cr>", desc = "Switch Source/Header" },
-  },
-  root_dir = function(fname)
-    return require("lspconfig.util").root_pattern(
+  root_dir = function(bufnr, on_dir)
+    local root = vim.fs.root(bufnr, {
       "Makefile",
       "configure.ac",
       "configure.in",
@@ -13,8 +10,9 @@ M.clangd = {
       "meson.build",
       "opt/build/compile_commands.json",
       "compile_flags.txt",
-      ".git"
-    )(fname) or vim.fs.dirname(fname)
+      ".git",
+    })
+    on_dir(root)
   end,
   cmd = {
     "clangd",
@@ -33,6 +31,14 @@ M.clangd = {
 }
 
 M.gopls = {
+  root_dir = function(bufnr, on_dir)
+    local root = vim.fs.root(bufnr, {
+      "go.work",
+      "go.mod",
+      ".git",
+    })
+    on_dir(root)
+  end,
   settings = {
     gopls = {
       gofumpt = true,
@@ -66,6 +72,14 @@ M.gopls = {
 }
 
 M.lua_ls = {
+  root_dir = function(bufnr, on_dir)
+    local root = vim.fs.root(bufnr, {
+      ".luarc.json",
+      ".luarc.jsonc",
+      ".git",
+    })
+    on_dir(root)
+  end,
   settings = {
     Lua = {
       workspace = { checkThirdParty = false },

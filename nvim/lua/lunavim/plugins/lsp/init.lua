@@ -21,19 +21,9 @@ return {
       vim.api.nvim_create_autocmd("LspAttach", {
         callback = function(args)
           local bufnr = args.buf
-          local client = vim.lsp.get_client_by_id(args.data.client_id) or {}
-
-          local map_keys = LunaVim.plugin_keymaps("lsp") or {}
+          local map_keys = LunaVim.plugin_keymaps "lsp" or {}
           for _, k in ipairs(map_keys) do
             vim.keymap.set("n", k[1], k[2], { buffer = bufnr, desc = "LSP: " .. k.desc })
-          end
-
-          local servers = require("lunavim.plugins.lsp.servers")
-          local server_opts = servers[client.name]
-          if server_opts and server_opts.keys then
-            for _, k in ipairs(server_opts.keys) do
-              vim.keymap.set("n", k[1], k[2], { buffer = bufnr, desc = k.desc })
-            end
           end
         end,
       })
@@ -41,25 +31,25 @@ return {
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-      local servers = require("lunavim.plugins.lsp.servers")
-      require("mason").setup({ ui = { border = "rounded" } })
+      local lsp_servers = require "lunavim.plugins.lsp.servers"
+      for lang, opts in pairs(lsp_servers) do
+        opts.capabilities = vim.tbl_deep_extend("force", opts.capabilities or {}, capabilities)
+        vim.lsp.config(lang, opts)
+      end
 
-      require("mason-lspconfig").setup({
+      local servers = require "lunavim.plugins.lsp.servers"
+      require("mason").setup { ui = { border = "rounded" } }
+
+      require("mason-lspconfig").setup {
         ensure_installed = vim.tbl_keys(servers),
-        handlers = {
-          function(server_name)
-            local opts = servers[server_name] or {}
-            opts.capabilities = vim.deepcopy(capabilities)
-            require("lspconfig")[server_name].setup(opts)
-          end,
-        },
-      })
+      }
 
       local icons = LunaVim.icons.diagnostics
-      vim.diagnostic.config({
+      vim.diagnostic.config {
         underline = true,
         update_in_insert = false,
         virtual_text = { spacing = 4, source = "if_many", prefix = "●" },
+        virtual_lines = true,
         severity_sort = true,
         signs = {
           text = {
@@ -69,7 +59,7 @@ return {
             [vim.diagnostic.severity.INFO] = icons.Info,
           },
         },
-      })
+      }
     end,
   },
   {
@@ -101,7 +91,7 @@ return {
   {
     "folke/trouble.nvim",
     cmd = "Trouble",
-    keys = LunaVim.plugin_keymaps("trouble.nvim"),
+    keys = LunaVim.plugin_keymaps "trouble.nvim",
     opts = {
       auto_close = true,
       restore_window = false,
