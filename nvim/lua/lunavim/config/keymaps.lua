@@ -61,8 +61,8 @@ local defaults = {
     ["<A-S-l>"] = { ":tabm +1<Return>", { desc = "Move tab to right" } },
 
     -- tags
-    ["<C-P>"] = { "<C-I>", { desc = "Jump to next" } },
-    ["<C-N>"] = { "<C-O>", { desc = "Jump to prev" } },
+    ["<C-N>"] = { "<C-I>", { desc = "Jump to next" } },
+    ["<C-P>"] = { "<C-O>", { desc = "Jump to prev" } },
 
     ["<leader>nh"] = { ":nohl", { desc="No highlight" } },
 
@@ -86,7 +86,8 @@ local plugins = {
     { "<leader>ff",      function() Snacks.picker.files() end,           desc = "Find Files" },
     { "<leader>fs",      function() Snacks.picker.grep() end,            desc = "Grep Text" },
     { "<leader>fr",      function() Snacks.picker.recent() end,          desc = "Recent Files" },
-        { "<leader>fp", function() Snacks.picker.projects() end, desc = "Projects" },
+    { "<leader>fc", function() Snacks.picker.grep_word({words = vim.fn.expand("<cword>")}) end, desc = "Visual selection or word", mode = { "n", "x" } },
+    { "<leader>fp", function() Snacks.picker.projects() end, desc = "Projects" },
     -- { "<leader>e",      function() Snacks.explorer() end,               desc = "File Explorer" },
     -- lsp
     { "gr",              function() Snacks.picker.lsp_references() end,  desc = "LSP References" },
@@ -130,6 +131,8 @@ local plugins = {
     ["<C-h>"] = function(...)
       return (require("cmp").mapping.complete())(...)
     end,
+    ['<C-d>'] = function() require"cmp".mapping.scroll_docs(-4) end,
+    ['<C-u>'] = function() require"cmp".mapping.scroll_docs(4) end,
     ["<C-e>"] = function(...)
       return (require("cmp").mapping.abort())(...)
     end,
