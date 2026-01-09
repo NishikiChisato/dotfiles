@@ -15,6 +15,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   spec = {
     { import = "lunavim.plugins" },
+    { import = "lunavim.plugins.custom" },
   },
   defaults = {
     lazy = true,

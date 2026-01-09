@@ -104,4 +104,8 @@ M.lua_ls = {
   },
 }
 
+M.markdown_oxide = {
+  root_dir = require("lspconfig.util").root_pattern(".obsidian", "obsidian.vimrc", ".git"),
+}
+
 return M

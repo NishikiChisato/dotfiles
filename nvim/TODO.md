@@ -1,0 +1,2 @@
+- [ ] Refactor plugin keymaps logic
+

@@ -201,6 +201,10 @@ local plugins = {
     { "<leader>wr", function() require("persistence").load() end, desc = "Restore Session",
     },
   },
+  ["obsidian.nvim"] = {
+    { "<leader>of", "<cmd>Obsidian search<cr>", desc = "Search Notes (Grep)" },
+    { "<leader>oo", "<cmd>Obsidian open<cr>", desc = "Open in Obsidian App" },
+  }
   -- stylua: ignore end
 }
 
