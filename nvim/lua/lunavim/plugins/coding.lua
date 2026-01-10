@@ -40,7 +40,7 @@ return {
             winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
           },
         },
-        mapping = cmp.mapping.preset.insert(LunaVim.plugin_keymaps "nvim-cmp"),
+        mapping = cmp.mapping.preset.insert(LunaVim.plugin_raw "nvim-cmp"),
         sources = cmp.config.sources {
           { name = "nvim_lsp", priority = 1000 },
           { name = "nvim_lsp_signature_help", priority = 800 },
@@ -83,7 +83,7 @@ return {
     "nvim-mini/mini.surround",
     event = "VeryLazy",
     opts = {
-      mappings = LunaVim.plugin_keymaps "mini.surround",
+      mappings = LunaVim.plugin_raw "mini.surround",
     },
   },
   -- Extend text object
@@ -110,7 +110,7 @@ return {
   },
   {
     "Wansmer/treesj",
-    keys = LunaVim.plugin_keymaps "treesj",
+    keys = LunaVim.plugin_lazy "treesj",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     opts = {
       use_default_keymaps = false,

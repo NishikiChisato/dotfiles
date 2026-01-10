@@ -3,7 +3,7 @@ return {
   {
     "stevearc/oil.nvim",
     cmd = "Oil",
-    keys = LunaVim.plugin_keymaps "oil.nvim",
+    keys = LunaVim.plugin_lazy "oil.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {
       default_file_explorer = true,
@@ -11,10 +11,12 @@ return {
       keymaps = {
         ["g?"] = "actions.show_help",
         ["<CR>"] = "actions.select",
-        ["<C-v>"] = "actions.select_vsplit",
-        ["<C-h>"] = "actions.select_split",
+        ["<C-s>"] = { "actions.select", opts = { vertical = true } },
+        ["<C-h>"] = { "actions.select", opts = { horizontal = true } },
+        ["<C-t>"] = { "actions.select", opts = { tab = true } },
         ["-"] = "actions.parent",
         ["_"] = "actions.open_cwd",
+        ["<Esc>"] = { "actions.close", mode = "n" },
         ["gs"] = "actions.change_sort",
         ["gx"] = "actions.open_external",
         ["g."] = "actions.toggle_hidden",
@@ -31,7 +33,7 @@ return {
   {
     "nvim-neo-tree/neo-tree.nvim",
     cmd = "Neotree",
-    keys = LunaVim.plugin_keymaps "neo-tree.nvim",
+    keys = LunaVim.plugin_lazy "neo-tree.nvim",
     opts = {
       close_if_last_window = true,
       popup_border_style = "rounded",
@@ -82,7 +84,7 @@ return {
   {
     "folke/flash.nvim",
     event = "VeryLazy",
-    keys = LunaVim.plugin_keymaps "flash.nvim",
+    keys = LunaVim.plugin_lazy "flash.nvim",
     opts = {
       modes = {
         search = { enabled = false },
@@ -103,7 +105,7 @@ return {
         icons = LunaVim.icons.kinds,
       }
     end,
-    keys = LunaVim.plugin_keymaps "aerial.nvim",
+    keys = LunaVim.plugin_lazy "aerial.nvim",
   },
   -- Git sign
   {
@@ -133,6 +135,6 @@ return {
     "folke/persistence.nvim",
     event = "BufReadPre",
     opts = { options = { "buffers", "curdir", "tabpages", "winsize" } },
-    keys = LunaVim.plugin_keymaps "persistence.nvim",
+    keys = LunaVim.plugin_lazy "persistence.nvim",
   },
 }

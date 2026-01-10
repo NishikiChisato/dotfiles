@@ -10,7 +10,9 @@ _G.LunaVim = setmetatable({}, {
 _G.LunaVim.icons = require("lunavim.config.icons")
 _G.LunaVim.util = require("lunavim.util")
 require("lunavim.config.keymaps").load_defaults()
-_G.LunaVim.plugin_keymaps = require("lunavim.config.keymaps").plugin_keymaps
+_G.LunaVim.plugin_lazy = require("lunavim.config.keymaps").plugin_lazy
+_G.LunaVim.plugin_nvim = require("lunavim.config.keymaps").plugin_nvim
+_G.LunaVim.plugin_raw = require("lunavim.config.keymaps").plugin_raw
 
 -- local defaults = require("lunavim.config.keymaps").get_defaults()
 -- local mode_adapter = require("lunavim.config.keymaps").get_adapter()

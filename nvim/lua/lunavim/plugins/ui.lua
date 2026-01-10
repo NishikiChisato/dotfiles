@@ -237,7 +237,7 @@ return {
         picker = { border = "rounded" },
       },
     },
-    keys = LunaVim.plugin_keymaps "snacks.nvim",
+    keys = LunaVim.plugin_lazy "snacks.nvim",
   },
   {
     "HiPhish/rainbow-delimiters.nvim",

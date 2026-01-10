@@ -21,9 +21,9 @@ return {
       vim.api.nvim_create_autocmd("LspAttach", {
         callback = function(args)
           local bufnr = args.buf
-          local map_keys = LunaVim.plugin_keymaps "lsp" or {}
+          local map_keys = LunaVim.plugin_nvim "lsp" or {}
           for _, k in ipairs(map_keys) do
-            vim.keymap.set("n", k[1], k[2], { buffer = bufnr, desc = "LSP: " .. k.desc })
+            vim.keymap.set(unpack(k))
           end
         end,
       })
@@ -49,7 +49,7 @@ return {
         underline = true,
         update_in_insert = false,
         virtual_text = { spacing = 4, source = "if_many", prefix = "●" },
-        virtual_lines = true,
+        -- virtual_lines = true,
         severity_sort = true,
         signs = {
           text = {
@@ -91,7 +91,7 @@ return {
   {
     "folke/trouble.nvim",
     cmd = "Trouble",
-    keys = LunaVim.plugin_keymaps "trouble.nvim",
+    keys = LunaVim.plugin_lazy "trouble.nvim",
     opts = {
       auto_close = true,
       restore_window = false,
