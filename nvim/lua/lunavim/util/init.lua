@@ -12,6 +12,7 @@ local function load_builtin(path)
 end
 
 load_builtin "lunavim.util.modules"
-load_builtin "lunavim.util.inspect"
+load_builtin "lunavim.util.util"
+load_builtin "lunavim.util.debug"
 
 return M

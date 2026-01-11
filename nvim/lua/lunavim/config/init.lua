@@ -14,6 +14,8 @@ _G.LunaVim.plugin_lazy = require("lunavim.config.keymaps").plugin_lazy
 _G.LunaVim.plugin_nvim = require("lunavim.config.keymaps").plugin_nvim
 _G.LunaVim.plugin_raw = require("lunavim.config.keymaps").plugin_raw
 
+_G.LunaVim.util.lock_table(_G.LunaVim)
+
 -- local defaults = require("lunavim.config.keymaps").get_defaults()
 -- local mode_adapter = require("lunavim.config.keymaps").get_adapter()
 

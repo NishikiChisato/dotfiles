@@ -1,5 +1,11 @@
 local M = {}
 
+local function lock_table(list)
+  for _, tbl in ipairs(list) do
+    LunaVim.util.lock_table(tbl)
+  end
+end
+
 local generic_opts_any = { noremap = true, silent = true }
 
 local generic_opts = {
@@ -30,9 +36,9 @@ end)()
 local defaults = {
   normal_mode = {
     -- Cursor movement
-    ["<C-H>"] = { "<C-W>h", { desc = "Move cursor left"  } },
-    ["<C-J>"] = { "<C-W>j", { desc = "Move cursor down"  } },
-    ["<C-K>"] = { "<C-W>k", { desc = "Move cursor up"    } },
+    ["<C-H>"] = { "<C-W>h", { desc = "Move cursor left" } },
+    ["<C-J>"] = { "<C-W>j", { desc = "Move cursor down" } },
+    ["<C-K>"] = { "<C-W>k", { desc = "Move cursor up" } },
     ["<C-L>"] = { "<C-W>l", { desc = "Move cursor right" } },
 
     -- Split create
@@ -195,6 +201,8 @@ local plugins = {
   -- stylua: ignore end
 }
 
+lock_table { generic_opts_any, generic_opts, mode_adapter, mode_radapter, defaults, plugins }
+
 function M.set_keymaps(mode, key, val)
   local opts = generic_opts[mode_radapter[mode]] or generic_opts_any
   if type(val) == "table" then
@@ -259,9 +267,9 @@ local function report_keymaps(default_plugins, plugin_name)
     end
   end
   if cadidete_name then
-    error(("plugin: %s don't have keymaps, do you mean: %s?"):format(plugin_name, cadidete_name))
+    LunaVim.util.log_warn(("plugin: %s don't have keymaps, do you mean: %s?"):format(plugin_name, cadidete_name))
   else
-    error(("plugin: %s don't have keymaps"):format(plugin_name))
+    LunaVim.util.log_warn(("plugin: %s don't have keymaps"):format(plugin_name))
   end
 end
 
@@ -273,7 +281,7 @@ function M.nvim_normized(keymaps)
 end
 
 function M.lazy_normized(keymaps)
-  local opts = keymaps[3]
+  local opts = vim.fn.deepcopy(keymaps[3])
   local mode = opts.mode and opts.mode or { "n" }
   opts.mode = nil
   if opts then

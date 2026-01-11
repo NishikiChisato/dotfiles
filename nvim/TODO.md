@@ -1,2 +1,3 @@
-- [ ] Refactor plugin keymaps logic
-
+- [x] Refactor plugin keymaps logic
+- [ ] Intro logger module
+- [ ] Refactor total strucutre
