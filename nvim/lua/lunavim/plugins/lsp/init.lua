@@ -15,7 +15,7 @@ return {
     dependencies = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
-      "hrsh7th/cmp-nvim-lsp",
+      "saghen/blink.cmp",
     },
     config = function()
       vim.api.nvim_create_autocmd("LspAttach", {
@@ -23,25 +23,27 @@ return {
           local bufnr = args.buf
           local map_keys = LunaVim.plugin_nvim "lsp" or {}
           for _, k in ipairs(map_keys) do
-            vim.keymap.set(unpack(k))
+            local mode, lhs, rhs, opts = unpack(k)
+            opts = vim.tbl_deep_extend("force", opts or {}, { buffer = bufnr })
+            vim.keymap.set(mode, lhs, rhs, opts)
           end
         end,
       })
 
       local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+      capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
 
       local lsp_servers = require "lunavim.plugins.lsp.servers"
       for lang, opts in pairs(lsp_servers) do
         opts.capabilities = vim.tbl_deep_extend("force", opts.capabilities or {}, capabilities)
         vim.lsp.config(lang, opts)
+        vim.lsp.enable(lang)
       end
 
-      local servers = require "lunavim.plugins.lsp.servers"
       require("mason").setup { ui = { border = "rounded" } }
 
       require("mason-lspconfig").setup {
-        ensure_installed = vim.tbl_keys(servers),
+        ensure_installed = vim.tbl_keys(lsp_servers),
       }
 
       local icons = LunaVim.icons.diagnostics
