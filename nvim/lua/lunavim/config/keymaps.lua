@@ -146,8 +146,8 @@ local plugins = {
     ["<CR>"] = function(...) return (require("cmp").mapping.confirm { select = true })(...) end,
   },
   ["mini.align"] = {
-    start = "<leader>al",
-    start_with_preview = "<leader>Al",
+    start = "<leader>ll",
+    start_with_preview = "<leader>LL",
   },
   ["mini.surround"] = {
     add       = ",a", -- add:       ,a + textobj +    sign
@@ -159,12 +159,6 @@ local plugins = {
   },
   ["treesj"] = {
     { "<leader>tj", "<CMD>TSJToggle<Return>", { desc = "Toggle split/join code" } },
-  },
-  ["yanky.nvim"] = {
-    { "<leader>p", "<cmd>YankyRingHistory<Return>", { mode = { "n", "x" }, desc = "Open Yank History" } },
-    { "y", "<Plug>(YankyYank)", mode = { "n", "x" }, { desc = "Yank text" } },
-    { "p", "<Plug>(YankyPutAfter)", mode = { "n", "x" }, { desc = "Put yanked text after cursor" } },
-    { "P", "<Plug>(YankyPutBefore)", mode = { "n", "x" }, { desc = "Put yanked text before cursor" } },
   },
   ["lsp"] = {
     { "K", "<cmd>Lspsaga hover_doc<Return>", { desc = "Hover Documentation" } },
@@ -202,18 +196,18 @@ local plugins = {
     { "<leader>wr", function() require("persistence").load() end, { desc = "Restore Session" }, },
     { "<leader>wd", function() require("persistence").stop() end, { desc = "Stop Auto Save Session" }, },
   },
-  ["avante.nvim"] = {
-    -- ask AI
-    { "<leader>aa", function() require("avante.api").ask() end, { desc = "AI Ask (Sidebar)", mode = { "n", "v" } } },
-    -- inline edit
-    { "<leader>ae", function() require("avante.api").edit() end, { desc = "AI Edit (Inline)", mode = { "n", "v" } } },
-    -- refresh context
-    { "<leader>ar", function() require("avante.api").refresh() end, { desc = "AI Refresh Context" } },
-    -- focus on sidebar
-    { "<leader>af", "<cmd>AvanteFocus<cr>", { desc = "AI Focus Sidebar" } },
-    -- show diff
-    { "<leader>ad", "<cmd>AvanteShowFullDiff<cr>", { desc = "AI Show Diff" } },
-  },
+  -- ["avante.nvim"] = {
+  --   -- ask AI
+  --   { "<leader>aa", function() require("avante.api").ask() end, { desc = "AI Ask (Sidebar)", mode = { "n", "v" } } },
+  --   -- inline edit
+  --   { "<leader>ae", function() require("avante.api").edit() end, { desc = "AI Edit (Inline)", mode = { "n", "v" } } },
+  --   -- refresh context
+  --   { "<leader>ar", function() require("avante.api").refresh() end, { desc = "AI Refresh Context" } },
+  --   -- focus on sidebar
+  --   { "<leader>af", "<cmd>AvanteFocus<cr>", { desc = "AI Focus Sidebar" } },
+  --   -- show diff
+  --   { "<leader>ad", "<cmd>AvanteShowFullDiff<cr>", { desc = "AI Show Diff" } },
+  -- },
   -- stylua: ignore end
 }
 

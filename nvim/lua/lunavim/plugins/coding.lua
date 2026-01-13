@@ -1,3 +1,4 @@
+
 return {
   -- CMP
   {
@@ -61,6 +62,7 @@ return {
       sources = {
         default = {
           "lsp",
+          "avante",
           "snippets",
           "path",
           "buffer",
@@ -122,7 +124,7 @@ return {
   -- Alignment
   {
     "nvim-mini/mini.align",
-    event = "InsertEnter",
+    event = "BufReadPost",
     opts = {
       mappings = LunaVim.plugin_raw "mini.align",
     },
