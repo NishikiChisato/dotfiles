@@ -185,8 +185,8 @@ local plugins = {
     { "<leader>ee", "<cmd>Neotree toggle<cr>", { desc = "Explorer NeoTree" } },
   },
   ["flash.nvim"] = {
-    { "<leader>s", mode = { "n", "x", "o" }, function() require("flash").jump() end, { desc = "Flash Jump" }, },
-    { "<leader>ss", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, { desc = "Flash Treesitter" }, },
+    { "f", mode = { "n", "x", "o" }, function() require("flash").jump() end, { desc = "Flash Jump" }, },
+    { "F", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, { desc = "Flash Treesitter" }, },
   },
   ["aerial.nvim"] = {
     { "<leader>cs", "<cmd>AerialToggle! right<cr>", { desc = "Code Outline" } },

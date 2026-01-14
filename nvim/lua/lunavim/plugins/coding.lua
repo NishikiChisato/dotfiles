@@ -1,4 +1,3 @@
-
 return {
   -- CMP
   {
@@ -21,6 +20,11 @@ return {
     },
     version = "1.*",
     opts = {
+      enabled = function()
+        return not vim.tbl_contains({ "oil" }, vim.bo.buftype)
+          and vim.bo.buftype ~= "prompt"
+          and vim.b.completion ~= false
+      end,
       keymap = {
         preset = "default",
         ["<C-\\>"] = { "show", "show_documentation", "hide_documentation" },
@@ -67,7 +71,7 @@ return {
           "path",
           "buffer",
           "lazydev",
-          "ripgrep"
+          "ripgrep",
         },
         providers = {
           ripgrep = {
@@ -76,9 +80,7 @@ return {
             opts = {},
             transform_items = function(_, items)
               for _, item in ipairs(items) do
-                item.labelDetails = {
-                  description = "(rg)",
-                }
+                item.labelDetails = { description = "(rg)" }
               end
               return items
             end,
@@ -89,35 +91,21 @@ return {
             min_keyword_length = 3,
             opts = {},
           },
-          git = {
-            module = "blink-cmp-git",
-            name = "Git",
-            opts = {},
-          },
+          git = { module = "blink-cmp-git", name = "Git", opts = {} },
           tmux = {
             module = "blink-cmp-tmux",
             name = "tmux",
-            opts = {
-              all_panes = false,
-              capture_history = false,
-              triggered_only = false,
-              trigger_chars = { "." },
-            },
+            opts = { all_panes = false, capture_history = false, triggered_only = false, trigger_chars = { "." } },
           },
-          avante = {
-            module = "blink-cmp-avante",
-            name = "Avante",
-            opts = {
-              -- options for blink-cmp-avante
-            },
-          },
-          lazydev = {
-            name = "LazyDev",
-            module = "lazydev.integrations.blink",
-            score_offset = 100,
-          },
+          avante = { module = "blink-cmp-avante", name = "Avante", opts = {} },
+          lazydev = { name = "LazyDev", module = "lazydev.integrations.blink", score_offset = 100 },
         },
-        snippets = { preset = "luasnip" },
+      },
+      snippets = {
+        preset = "luasnip",
+        expand = function(snippet)
+          require("luasnip").lsp_expand(snippet)
+        end,
       },
     },
   },
@@ -190,7 +178,7 @@ return {
         fast_wrap = {},
       }
 
-      npairs.add_rules(require('nvim-autopairs.rules.endwise-lua'))
+      npairs.add_rules(require "nvim-autopairs.rules.endwise-lua")
     end,
   },
 }

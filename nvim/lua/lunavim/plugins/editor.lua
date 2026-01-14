@@ -87,7 +87,10 @@ return {
     keys = LunaVim.plugin_lazy "flash.nvim",
     opts = {
       modes = {
-        search = { enabled = false },
+        char = {
+          jump_labels = false,
+        },
+        search = { enabled = true },
       },
     },
   },
