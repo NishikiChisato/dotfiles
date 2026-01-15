@@ -3,6 +3,7 @@ font-feature = -calt
 font-feature = -liga
 # font-family = "Maple Mono"
 font-family = "Maple Mono NF CN"
+theme = "tokyonight_night"
 
 window-vsync = true
 shell-integration-features = no-cursor,no-sudo,no-title
