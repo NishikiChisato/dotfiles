@@ -1,5 +1,21 @@
 local M = {}
 
+local function get_clangd_path()
+  local cmd = "which clangd"
+  local handle = io.popen(cmd)
+  if handle then
+    local result = handle:read "*a"
+    handle:close()
+    if result and result ~= "" then
+      local path = result:gsub("%s+", "")
+      if vim.fn.executable(path) == 1 then
+        return path
+      end
+    end
+  end
+  return "clangd"
+end
+
 M.clangd = {
   root_dir = function(bufnr, on_dir)
     local root = vim.fs.root(bufnr, {
@@ -15,7 +31,7 @@ M.clangd = {
     on_dir(root)
   end,
   cmd = {
-    "clangd",
+    get_clangd_path(),
     "--background-index",
     "--clang-tidy",
     "--header-insertion=iwyu",
