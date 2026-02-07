@@ -3,7 +3,7 @@ font-feature = -calt
 font-feature = -liga
 # font-family = "Maple Mono"
 font-family = "Maple Mono NF CN"
-theme = "tokyonight_night"
+# theme = "tokyonight_night"
 
 window-vsync = true
 shell-integration-features = no-cursor,no-sudo,no-title
@@ -11,8 +11,8 @@ shell-integration-features = no-cursor,no-sudo,no-title
 # cursor-style = block
 custom-shader = shaders/cursor_wrap.glsl
 
-background-opacity = 0.5
-background-blur-radius = 25
+background-opacity = 0.9
+background-blur-radius = 0
 macos-titlebar-style = hidden
 macos-option-as-alt = left
 
