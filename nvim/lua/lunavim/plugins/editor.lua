@@ -143,4 +143,54 @@ return {
     },
     keys = LunaVim.plugin_lazy "persistence.nvim",
   },
+  -- tmux
+  {
+    "christoomey/vim-tmux-navigator",
+    cmd = {
+      "TmuxNavigateLeft",
+      "TmuxNavigateDown",
+      "TmuxNavigateUp",
+      "TmuxNavigateRight",
+      "TmuxNavigatePrevious",
+    },
+    keys = {
+      { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
+      { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
+      { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
+      { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
+      { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
+    },
+  },
+  -- TODO comment
+  {
+    "folke/todo-comments.nvim",
+    event = { "BufReadPost", "BufNewFile" },
+    dependencies = { "nvim-lua/plenary.nvim" },
+    keys = {
+      {
+        "]t",
+        function()
+          require("todo-comments").jump_next()
+        end,
+        desc = "Next Todo",
+      },
+      {
+        "[t",
+        function()
+          require("todo-comments").jump_prev()
+        end,
+        desc = "Prev Todo",
+      },
+      { "<leader>st", "<cmd>TodoSnacks<cr>", desc = "Search Todo (Snacks)" },
+    },
+    opts = {
+      signs = true,
+      highlight = {
+        multiline = true,
+        keyword = "bg",
+        after = "fg",
+        pattern = [[.*<(KEYWORDS)\s*:]],
+      },
+    },
+  },
 }
