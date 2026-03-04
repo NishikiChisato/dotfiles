@@ -5,7 +5,16 @@ return {
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
     config = function()
-      local install_languages = { "cpp", "go", "lua", "vim", "bash", "cmake", "markdown", "markdown_inline" }
+      local install_languages = {
+        "cpp",
+        "go",
+        "lua",
+        "vim",
+        "bash",
+        "cmake",
+        "markdown",
+        "markdown_inline",
+      }
       require("nvim-treesitter").install(install_languages, {
         summary = true,
       })
