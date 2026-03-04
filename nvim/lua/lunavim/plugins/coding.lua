@@ -74,6 +74,16 @@ return {
           "ripgrep",
         },
         providers = {
+          lsp = {
+            name = 'LSP',
+            module = 'blink.cmp.sources.lsp',
+            transform_items = function(_, items)
+              return vim.tbl_filter(function(item)
+                return item.kind ~= require('blink.cmp.types').CompletionItemKind.Keyword
+              end, items)
+            end,
+            score_offset = 100,
+          },
           ripgrep = {
             module = "blink-ripgrep",
             name = "Ripgrep",
@@ -84,21 +94,38 @@ return {
               end
               return items
             end,
+            score_offset = 0,
           },
           dictionary = {
             module = "blink-cmp-dictionary",
             name = "Dict",
             min_keyword_length = 3,
             opts = {},
+            score_offset = 0,
           },
-          git = { module = "blink-cmp-git", name = "Git", opts = {} },
+          git = {
+            module = "blink-cmp-git",
+            name = "Git",
+            opts = {},
+            score_offset = 0,
+          },
           tmux = {
             module = "blink-cmp-tmux",
             name = "tmux",
             opts = { all_panes = false, capture_history = false, triggered_only = false, trigger_chars = { "." } },
+            score_offset = 0,
           },
-          avante = { module = "blink-cmp-avante", name = "Avante", opts = {} },
-          lazydev = { name = "LazyDev", module = "lazydev.integrations.blink", score_offset = 100 },
+          avante = {
+            module = "blink-cmp-avante",
+            name = "Avante",
+            opts = {},
+            score_offset = 0,
+          },
+          lazydev = {
+            name = "LazyDev",
+            module = "lazydev.integrations.blink",
+            score_offset = 0,
+          },
         },
       },
       snippets = {
