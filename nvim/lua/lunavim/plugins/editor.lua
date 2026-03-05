@@ -197,5 +197,8 @@ return {
     "chrisgrieser/nvim-spider",
     lazy = true,
     keys = LunaVim.plugin_lazy "nvim-spider",
+    opts = {
+      skipInsignificantPunctuation = false,
+    },
   },
 }
