@@ -72,9 +72,7 @@ local defaults = {
     ["<leader>nh"] = { ":nohl<Return>", { desc = "No highlight" } },
 
     ["<leader>rn"] = {
-      function()
-        return ":IncRename " .. vim.fn.expand "<cword>"
-      end,
+      ":IncRename ",
       { desc = "Rename" },
     },
     ["<leader>,,"] = {
@@ -165,12 +163,6 @@ local plugins = {
     { "[d", "<cmd>Lspsaga diagnostic_jump_prev<Return>", { desc = "Prev Diagnostic" } },
     { "]d", "<cmd>Lspsaga diagnostic_jump_next<Return>", { desc = "Next Diagnostic" } },
     { "<leader>ca", "<cmd>Lspsaga code_action<Return>", { desc = "Code Action", mode = { "n", "v" } } },
-    { "<leader>rn",
-      function()
-        local cword = vim.fn.expand "cword"
-        return "<cmd>IncRename " .. cword .. "<Return>"
-      end, { expr = true, desc = "Rename Symbol" },
-    },
   },
   ["trouble.nvim"] = {
     { "<leader>xx", "<cmd>Trouble diagnostics toggle<Return>", { desc = "Project Diagnostics" } },
@@ -215,7 +207,8 @@ local plugins = {
     { "b", "<cmd>lua require('spider').motion('b')<CR>", { mode = { "n", "o", "x" } } },
     { "ge", "<cmd>lua require('spider').motion('ge')<CR>", { mode = { "n", "o", "x" } } },
   }
-  
+,
+
   -- stylua: ignore end
 }
 
