@@ -84,13 +84,14 @@ return {
   {
     "folke/flash.nvim",
     event = "VeryLazy",
-    keys = LunaVim.plugin_lazy "flash.nvim",
+    keys = LunaVim.plugin_raw "flash.nvim",
     opts = {
+      incremental = true,
       modes = {
-        char = {
-          jump_labels = false,
+        enabled = true,
+        search = {
+          enabled = true,
         },
-        search = { enabled = true },
       },
     },
   },
