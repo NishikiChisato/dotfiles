@@ -208,7 +208,7 @@ return {
         lsp_doc_border = true, -- add a border to hover docs and signature help
       },
       redirect = {
-        -- view = "notify",
+        view = "notify",
         filter = { event = "msg_show" },
       },
     },
