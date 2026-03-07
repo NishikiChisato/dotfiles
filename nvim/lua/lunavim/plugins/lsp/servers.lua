@@ -32,11 +32,11 @@ M.clangd = {
   end,
   cmd = {
     get_clangd_path(),
-    "--background-index",
-    "--clang-tidy",
-    "--header-insertion=iwyu",
-    "--completion-style=detailed",
-    "--function-arg-placeholders",
+    "--background-index", -- create index in background
+    "--clang-tidy", -- activate clang-tidy
+    "--header-insertion=iwyu", -- include header automatically
+    "--completion-style=detailed", -- completion style when you typing
+    "--function-arg-placeholders", -- function placeholders for <Tab>
     "--fallback-style=llvm",
   },
   init_options = {
