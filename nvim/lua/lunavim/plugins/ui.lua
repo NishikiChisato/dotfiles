@@ -179,21 +179,14 @@ return {
       }
     end,
   },
-  -- Lspsaga
-  {
-    "nvimdev/lspsaga.nvim",
-    event = "LspAttach",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "nvim-tree/nvim-web-devicons",
-    },
-    opts = {},
-  },
   -- Notice and notify
   {
     "folke/noice.nvim",
     event = "VeryLazy",
-    dependencies = { "MunifTanjim/nui.nvim" },
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    },
     opts = {
       lsp = {
         override = {
@@ -286,7 +279,6 @@ return {
       { "nvim-lua/plenary.nvim" },
       { "nvim-tree/nvim-web-devicons" },
     },
-    -- enabled = false,
     event = "LspAttach",
     keys = {
       {

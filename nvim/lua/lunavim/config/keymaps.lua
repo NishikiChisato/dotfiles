@@ -159,10 +159,6 @@ local plugins = {
     { "<leader>tj", "<CMD>TSJToggle<Return>", { desc = "Toggle split/join code" } },
   },
   ["lsp"] = {
-    { "K", "<cmd>Lspsaga hover_doc<Return>", { desc = "Hover Documentation" } },
-    { "[d", "<cmd>Lspsaga diagnostic_jump_prev<Return>", { desc = "Prev Diagnostic" } },
-    { "]d", "<cmd>Lspsaga diagnostic_jump_next<Return>", { desc = "Next Diagnostic" } },
-    { "<leader>ca", "<cmd>Lspsaga code_action<Return>", { desc = "Code Action", mode = { "n", "v" } } },
   },
   ["trouble.nvim"] = {
     { "<leader>xx", "<cmd>Trouble diagnostics toggle<Return>", { desc = "Project Diagnostics" } },
