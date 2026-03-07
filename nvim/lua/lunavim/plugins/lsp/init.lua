@@ -103,6 +103,7 @@ return {
   },
   {
     "smjonas/inc-rename.nvim",
+    event = "LspAttach",
     cmd = "IncRename",
     opts = {
       input_buffer_type = "snacks",
