@@ -228,7 +228,7 @@ return {
       terminal = { enabled = true },
       words = { enabled = true },
       statuscolumn = { enabled = true },
-      scroll = { enabled = true },
+      scroll = { enabled = false },
       scope = { enabled = true },
       styles = {
         notification = { bg = "NONE", wo = { wrap = true } },
