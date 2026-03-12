@@ -85,6 +85,7 @@ end
 return {
   {
     "yetone/avante.nvim",
+    enabled = false,
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-mini/mini.pick",

@@ -223,7 +223,60 @@ return {
       indent = { enabled = true, animate = { enabled = true } },
       notifier = { enabled = true, timeout = 5000 },
       input = { enabled = true },
-      picker = { enabled = true },
+      picker = {
+        enabled = true,
+        layout = {
+          preset = function()
+            return "luna_vertical"
+          end,
+        },
+        layouts = {
+          luna_vertical = {
+            layout = {
+              backdrop = { transparent = true, blend = 40 },
+              width = 0.95,
+              height = 0.95,
+              box = "vertical",
+              border = "rounded",
+              title = "{title} {live} {flags}",
+              title_pos = "center",
+              { win = "input", height = 1, border = "bottom", title = "{icon} {title}", title_pos = "center" },
+              { win = "list", border = "none" },
+              { win = "preview", title = "{preview}", border = "top", height = 0.75 },
+            },
+          },
+          luna_horizontal = {
+            layout = {
+              backdrop = { transparent = true, blend = 40 },
+              width = 0.95,
+              height = 0.95,
+              box = "horizontal",
+              border = "rounded",
+              title = "{title} {live} {flags}",
+              title_pos = "center",
+              {
+                box = "vertical",
+                border = "right",
+                { win = "input", height = 1, border = "bottom", title = "{icon} {title}", title_pos = "center" },
+                { win = "list", border = "none" },
+              },
+              { win = "preview", title = "{preview}", width = 0.75 },
+            },
+          },
+        },
+        win = {
+          input = {
+            keys = {
+              ["<Esc>"] = { "close", mode = { "n", "i" } },
+              ["<C-j>"] = { "list_down", mode = { "i", "n" } },
+              ["<C-k>"] = { "list_up", mode = { "i", "n" } },
+              ["<C-d>"] = { "preview_scroll_down", mode = { "i", "n" } },
+              ["<C-u>"] = { "preview_scroll_up", mode = { "i", "n" } },
+              ["<C-p>"] = { "toggle_preview", mode = { "i", "n" } },
+            },
+          },
+        },
+      },
       -- explorer = { enabled = true },
       terminal = { enabled = true },
       words = { enabled = true },
