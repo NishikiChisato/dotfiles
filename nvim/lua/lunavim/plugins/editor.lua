@@ -83,14 +83,16 @@ return {
   -- Quick jump
   {
     "folke/flash.nvim",
-    event = "VeryLazy",
-    keys = LunaVim.plugin_raw "flash.nvim",
+    event = "BufReadPre",
+    keys = LunaVim.plugin_lazy "flash.nvim",
     opts = {
-      incremental = true,
+      incremental = false,
       modes = {
-        enabled = true,
         search = {
           enabled = true,
+        },
+        char = {
+          enabled = false,
         },
       },
     },
@@ -194,12 +196,12 @@ return {
       },
     },
   },
-  {
-    "chrisgrieser/nvim-spider",
-    lazy = true,
-    keys = LunaVim.plugin_lazy "nvim-spider",
-    opts = {
-      skipInsignificantPunctuation = false,
-    },
-  },
+  -- {
+  --   "chrisgrieser/nvim-spider",
+  --   lazy = true,
+  --   keys = LunaVim.plugin_lazy "nvim-spider",
+  --   opts = {
+  --     skipInsignificantPunctuation = false,
+  --   },
+  -- },
 }

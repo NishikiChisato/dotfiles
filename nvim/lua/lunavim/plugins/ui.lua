@@ -224,6 +224,20 @@ return {
       notifier = { enabled = true, timeout = 5000 },
       input = { enabled = true },
       picker = {
+        jump = {
+          reuse_win = false,
+        },
+        sources = {
+          lsp_references = {
+            include_current = true,
+          },
+          lsp_definitions = {
+            include_current = true,
+          },
+          lsp_declarations = {
+            include_current = true,
+          },
+        },
         enabled = true,
         layout = {
           preset = function()
