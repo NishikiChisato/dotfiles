@@ -149,6 +149,13 @@ local plugins = {
     { "<leader>wr", function() require("persistence").load() end, { desc = "Restore Session" }, },
     { "<leader>wd", function() require("persistence").stop() end, { desc = "Stop Auto Save Session" }, },
   },
+  ["flash.nvim"] = {
+    { "f", mode = { "n", "x", "o" }, function() require("flash").jump() end, { desc = "Flash Jump" } },
+    { "F", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, { desc = "Flash Treesitter" } },
+    { "r", mode = { "o" }, function() require("flash").remote() end, { desc = "Remote Flash" } },
+    { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, { desc = "Treesitter Search" } },
+    { "<c-x>", mode = { "n" }, function() require("flash").toggle() end, { desc = "Toggle Flash Search" } },
+  },
   -- stylua: ignore end
   ["mini.align"] = {
     start = "<leader>ll",

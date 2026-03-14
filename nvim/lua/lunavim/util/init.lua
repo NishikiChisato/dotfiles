@@ -14,5 +14,6 @@ end
 load_builtin "lunavim.util.modules"
 load_builtin "lunavim.util.util"
 load_builtin "lunavim.util.debug"
+load_builtin "lunavim.util.logger"
 
 return M
