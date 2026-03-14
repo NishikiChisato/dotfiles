@@ -71,10 +71,7 @@ local defaults = {
 
     ["<leader>nh"] = { ":nohl<Return>", { desc = "No highlight" } },
 
-    ["<leader>rn"] = {
-      ":IncRename ",
-      { desc = "Rename" },
-    },
+    ["<leader>rn"] = { ":IncRename ", { desc = "Rename" } },
     ["<leader>,,"] = {
       function()
         require("conform").format { async = true, lsp_format = "fallback" }
@@ -135,19 +132,6 @@ local plugins = {
     { "]]", function() Snacks.words.jump(vim.v.count1) end, { desc = "Next Reference", mode = { "n", "t" } } },
     { "[[", function() Snacks.words.jump(-vim.v.count1) end, { desc = "Prev Reference", mode = { "n", "t" } } },
   },
-  ["nvim-cmp"] = {
-    ["<C-k>"] = function(...) return (require("cmp").mapping.select_prev_item())(...) end,
-    ["<C-j>"] = function(...) return (require("cmp").mapping.select_next_item())(...) end,
-    ["<C-h>"] = function(...) return (require("cmp").mapping.complete())(...) end,
-    ["<C-d>"] = function() require("cmp").mapping.scroll_docs(-4) end,
-    ["<C-u>"] = function() require("cmp").mapping.scroll_docs(4) end,
-    ["<C-e>"] = function(...) return (require("cmp").mapping.abort())(...) end,
-    ["<CR>"] = function(...) return (require("cmp").mapping.confirm { select = true })(...) end,
-  },
-  ["mini.align"] = {
-    start = "<leader>ll",
-    start_with_preview = "<leader>LL",
-  },
   ["mini.surround"] = {
     add       = ",a", -- add:       ,a + textobj +    sign
     delete    = ",d", -- del:       ,d + sign
@@ -156,12 +140,22 @@ local plugins = {
     find_left = ",p", -- rfind:     ,p + textobj
     highlight = ",h", -- highlight: ,h + textobj
   },
-  ["treesj"] = {
-    { "<leader>tj", "<CMD>TSJToggle<Return>", { desc = "Toggle split/join code" } },
-  },
   ["lsp"] = {
     { "K", function() vim.lsp.buf.hover({ border = "rounded" }) end, { desc = "Hover", mode = "n" } },
     { "<C-k>", function() vim.lsp.buf.signature_help({ border = "rounded" }) end, { desc = "Signature help", mode = "i" } },
+  },
+  ["persistence.nvim"] = {
+    { "<leader>ws", function() require("persistence").save() end, { desc = "Save Session" }, },
+    { "<leader>wr", function() require("persistence").load() end, { desc = "Restore Session" }, },
+    { "<leader>wd", function() require("persistence").stop() end, { desc = "Stop Auto Save Session" }, },
+  },
+  -- stylua: ignore end
+  ["mini.align"] = {
+    start = "<leader>ll",
+    start_with_preview = "<leader>LL",
+  },
+  ["treesj"] = {
+    { "<leader>tj", "<CMD>TSJToggle<Return>", { desc = "Toggle split/join code" } },
   },
   ["trouble.nvim"] = {
     { "<leader>xx", "<cmd>Trouble diagnostics toggle<Return>", { desc = "Project Diagnostics" } },
@@ -176,20 +170,8 @@ local plugins = {
   ["neo-tree.nvim"] = {
     { "<leader>ee", "<cmd>Neotree toggle<cr>", { desc = "Explorer NeoTree" } },
   },
-  ["flash.nvim"] = {
-    { "f", mode = { "n", "x", "o" }, function() require("flash").jump() end, { desc = "Flash Jump" } },
-    { "F", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, { desc = "Flash Treesitter" } },
-    { "r", mode = { "o" }, function() require("flash").remote() end, { desc = "Remote Flash" } },
-    { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, { desc = "Treesitter Search" } },
-    { "<c-x>", mode = { "n" }, function() require("flash").toggle() end, { desc = "Toggle Flash Search" } },
-  },
   ["aerial.nvim"] = {
     { "<leader>cs", "<cmd>AerialToggle! right<cr>", { desc = "Code Outline" } },
-  },
-  ["persistence.nvim"] = {
-    { "<leader>ws", function() require("persistence").save() end, { desc = "Save Session" }, },
-    { "<leader>wr", function() require("persistence").load() end, { desc = "Restore Session" }, },
-    { "<leader>wd", function() require("persistence").stop() end, { desc = "Stop Auto Save Session" }, },
   },
   -- ["avante.nvim"] = {
   --   -- ask AI
@@ -203,16 +185,6 @@ local plugins = {
   --   -- show diff
   --   { "<leader>ad", "<cmd>AvanteShowFullDiff<cr>", { desc = "AI Show Diff" } },
   -- },
-
-  ["nvim-spider"] = {
-    { "w", "<cmd>lua require('spider').motion('w')<CR>", { mode = { "n", "o", "x" } } },
-    { "e", "<cmd>lua require('spider').motion('e')<CR>", { mode = { "n", "o", "x" } } },
-    { "b", "<cmd>lua require('spider').motion('b')<CR>", { mode = { "n", "o", "x" } } },
-    { "ge", "<cmd>lua require('spider').motion('ge')<CR>", { mode = { "n", "o", "x" } } },
-  }
-,
-
-  -- stylua: ignore end
 }
 
 lock_table { generic_opts_any, generic_opts, mode_adapter, mode_radapter, defaults, plugins }
