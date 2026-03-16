@@ -100,9 +100,9 @@ local plugins = {
     { "<leader><space>", function() Snacks.picker.smart() end, { desc = "Smart Find Files" } },
     { "<leader>fc", function() Snacks.picker.grep_word { words = vim.fn.expand "<cword>" } end, { desc = "Visual selection or word", mode = { "n", "x" } } },
     -- lsp
-    { "gr", function() Snacks.picker.lsp_references({{ include_current = true, jump = { reuse_win = false }, }}) end, { desc = "LSP References" } },
-    { "gd", function() Snacks.picker.lsp_definitions({{ include_current = true, jump = { reuse_win = false }, }}) end, { desc = "LSP Definitions" } },
-    { "gD", function() Snacks.picker.lsp_declarations({{ include_current = true, jump = { reuse_win = false }, }}) end, { desc = "Goto Declaration" } },
+    { "gr", function() Snacks.picker.lsp_references({ include_current = true, jump = { reuse_win = false }, }) end, { desc = "LSP References" } },
+    { "gd", function() Snacks.picker.lsp_definitions({ include_current = true, jump = { reuse_win = false }, }) end, { desc = "LSP Definitions" } },
+    { "gD", function() Snacks.picker.lsp_declarations({ include_current = true, jump = { reuse_win = false }, }) end, { desc = "Goto Declaration" } },
     { "gI", function() Snacks.picker.lsp_implementations() end, { desc = "Goto Implementation" } },
     { "gy", function() Snacks.picker.lsp_type_definitions() end, { desc = "Goto T[y]pe Definition" } },
     { "gic", function() Snacks.picker.lsp_incoming_calls() end, { desc = "C[a]lls Incoming" } },
