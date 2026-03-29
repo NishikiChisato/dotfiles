@@ -262,9 +262,8 @@ function M.nvim_normized(keymaps)
 end
 
 function M.lazy_normized(keymaps)
-  local opts = vim.fn.deepcopy(keymaps[3])
-  local mode = opts.mode and opts.mode or { "n" }
-  opts.mode = nil
+  local opts = keymaps[3]
+  local mode = keymaps.mode and keymaps.mode or { "n" }
   if opts then
     return { keymaps[1], keymaps[2], mode = mode, unpack(opts) }
   else
