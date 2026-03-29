@@ -180,18 +180,6 @@ local plugins = {
   ["aerial.nvim"] = {
     { "<leader>cs", "<cmd>AerialToggle! right<cr>", { desc = "Code Outline" } },
   },
-  -- ["avante.nvim"] = {
-  --   -- ask AI
-  --   { "<leader>aa", function() require("avante.api").ask() end, { desc = "AI Ask (Sidebar)", mode = { "n", "v" } } },
-  --   -- inline edit
-  --   { "<leader>ae", function() require("avante.api").edit() end, { desc = "AI Edit (Inline)", mode = { "n", "v" } } },
-  --   -- refresh context
-  --   { "<leader>ar", function() require("avante.api").refresh() end, { desc = "AI Refresh Context" } },
-  --   -- focus on sidebar
-  --   { "<leader>af", "<cmd>AvanteFocus<cr>", { desc = "AI Focus Sidebar" } },
-  --   -- show diff
-  --   { "<leader>ad", "<cmd>AvanteShowFullDiff<cr>", { desc = "AI Show Diff" } },
-  -- },
 }
 
 lock_table { generic_opts_any, generic_opts, mode_adapter, mode_radapter, defaults, plugins }

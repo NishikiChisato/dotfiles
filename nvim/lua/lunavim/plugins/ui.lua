@@ -385,7 +385,7 @@ return {
       current_only = false,
       winblend = 0,
       zindex = 40,
-      excluded_filetypes = { "neo-tree", "dashboard", "TelescopePrompt", "Avante" },
+      excluded_filetypes = { "neo-tree", "dashboard", "TelescopePrompt" },
     },
   },
 }

@@ -13,8 +13,6 @@ return {
       "Kaiser-Yang/blink-cmp-git",
       -- tmux
       "mgalliou/blink-cmp-tmux",
-      -- avante
-      "Kaiser-Yang/blink-cmp-avante",
       -- luasnip
       { "L3MON4D3/LuaSnip", version = "v2.*" },
     },
@@ -66,7 +64,6 @@ return {
       sources = {
         default = {
           "lsp",
-          "avante",
           "snippets",
           "path",
           "buffer",
@@ -113,12 +110,6 @@ return {
             module = "blink-cmp-tmux",
             name = "tmux",
             opts = { all_panes = false, capture_history = false, triggered_only = false, trigger_chars = { "." } },
-            score_offset = 0,
-          },
-          avante = {
-            module = "blink-cmp-avante",
-            name = "Avante",
-            opts = {},
             score_offset = 0,
           },
           lazydev = {

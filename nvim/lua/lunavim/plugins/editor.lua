@@ -94,6 +94,13 @@ return {
         char = {
           enabled = false,
         },
+        remote = {
+          remote_op = { restore = true, motion = true },
+        },
+      },
+      remote_op = {
+        restore = true,
+        motion = true,
       },
     },
   },

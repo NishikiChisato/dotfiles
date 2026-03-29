@@ -124,4 +124,8 @@ M.markdown_oxide = {
   root_dir = require("lspconfig.util").root_pattern(".obsidian", "obsidian.vimrc", ".git"),
 }
 
+M.ts_ls = {}
+
+M.neocmake = {}
+
 return M

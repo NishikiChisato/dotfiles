@@ -14,6 +14,8 @@ return {
         "cmake",
         "markdown",
         "markdown_inline",
+        "javascript",
+        "typescript",
       }
       require("nvim-treesitter").install(install_languages, {
         summary = true,
