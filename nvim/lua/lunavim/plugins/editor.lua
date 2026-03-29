@@ -98,10 +98,6 @@ return {
           remote_op = { restore = true, motion = true },
         },
       },
-      remote_op = {
-        restore = true,
-        motion = true,
-      },
     },
   },
   -- Class structure
