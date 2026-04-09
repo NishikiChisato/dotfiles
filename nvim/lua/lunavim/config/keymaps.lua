@@ -58,12 +58,20 @@ local defaults = {
     ["<leader>tx"] = { ":tabclose<Return>", { desc = "Close a new tab" } },
 
     -- Tab movement
-    ["<A-h>"] = { "gT", { desc = "Goto next tab" } },
-    ["<A-l>"] = { "gt", { desc = "Goto prev tab" } },
+    ["<A-h>"] = { "gT", { desc = "Goto prev tab" } },
+    ["<A-l>"] = { "gt", { desc = "Goto next tab" } },
+    ["<D-h>"] = { "gT", { desc = "Goto prev tab" } },
+    ["<D-l>"] = { "gt", { desc = "Goto next tab" } },
+    ["<Tab>"] = { "gt", { desc = "Goto next tab" } },
+    ["<S-Tab>"] = { "gT", { desc = "Goto prev tab" } },
 
     -- Move tabs
     ["<A-S-h>"] = { ":tabm -1<Return>", { desc = "Move tab to left" } },
     ["<A-S-l>"] = { ":tabm +1<Return>", { desc = "Move tab to right" } },
+    ["<D-S-h>"] = { ":tabm -1<Return>", { desc = "Move tab to left" } },
+    ["<D-S-l>"] = { ":tabm +1<Return>", { desc = "Move tab to right" } },
+    ["<leader>tH"] = { ":tabm -1<Return>", { desc = "Move tab to left" } },
+    ["<leader>tL"] = { ":tabm +1<Return>", { desc = "Move tab to right" } },
 
     -- tags
     ["<C-N>"] = { "<C-I>", { desc = "Jump to next" } },
@@ -86,7 +94,13 @@ local defaults = {
 
   visual_block_mode = {},
 
-  term_mode = {},
+  term_mode = {
+    -- Terminal window navigation
+    ["<C-h>"] = { "<C-\\><C-N><C-w>h", { desc = "Move to left window" } },
+    ["<C-j>"] = { "<C-\\><C-N><C-w>j", { desc = "Move to lower window" } },
+    ["<C-k>"] = { "<C-\\><C-N><C-w>k", { desc = "Move to upper window" } },
+    ["<C-l>"] = { "<C-\\><C-N><C-w>l", { desc = "Move to right window" } },
+  },
 }
 
 local plugins = {
@@ -127,7 +141,9 @@ local plugins = {
     { "<leader>hs", function() Snacks.notifier.show_history() end, { desc = "Notification History" } },
     { "<leader>nd", function() Snacks.notifier.hide() end, { desc = "Dismiss All Notifications" } },
     { "<leader>lg", function() Snacks.lazygit() end, { desc = "Lazygit" } },
-    { "<leader>tt", function() Snacks.terminal() end, { desc = "Toggle Terminal" } },
+    { "<leader>tt", function() Snacks.terminal(nil, { win = { position = "float" } }) end, { desc = "Toggle Terminal (Float)" } },
+    { "<leader>th", function() Snacks.terminal(nil, { win = { position = "bottom" } }) end, { desc = "Toggle Terminal (Bottom)" } },
+    { "<leader>tv", function() Snacks.terminal(nil, { win = { position = "right" } }) end, { desc = "Toggle Terminal (Right)" } },
     { "<leader>z", function() Snacks.zen() end, { desc = "Toggle Zen Mode" } },
     { "]]", function() Snacks.words.jump(vim.v.count1) end, { desc = "Next Reference", mode = { "n", "t" } } },
     { "[[", function() Snacks.words.jump(-vim.v.count1) end, { desc = "Prev Reference", mode = { "n", "t" } } },

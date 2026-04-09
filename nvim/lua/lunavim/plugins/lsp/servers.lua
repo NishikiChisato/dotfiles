@@ -38,6 +38,8 @@ M.clangd = {
     "--completion-style=detailed", -- completion style when you typing
     "--function-arg-placeholders", -- function placeholders for <Tab>
     "--fallback-style=llvm",
+    "--experimental-modules-support",
+    "--pch-storage=disk",
   },
   init_options = {
     usePlaceholders = true,

@@ -11,8 +11,6 @@ return {
       "Kaiser-Yang/blink-cmp-dictionary",
       -- git
       "Kaiser-Yang/blink-cmp-git",
-      -- tmux
-      "mgalliou/blink-cmp-tmux",
       -- luasnip
       { "L3MON4D3/LuaSnip", version = "v2.*" },
     },
@@ -91,7 +89,7 @@ return {
               end
               return items
             end,
-            score_offset = 0,
+            score_offset = -1,
           },
           dictionary = {
             module = "blink-cmp-dictionary",
@@ -104,12 +102,6 @@ return {
             module = "blink-cmp-git",
             name = "Git",
             opts = {},
-            score_offset = 0,
-          },
-          tmux = {
-            module = "blink-cmp-tmux",
-            name = "tmux",
-            opts = { all_panes = false, capture_history = false, triggered_only = false, trigger_chars = { "." } },
             score_offset = 0,
           },
           lazydev = {
