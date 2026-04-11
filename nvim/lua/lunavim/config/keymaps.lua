@@ -54,7 +54,13 @@ local defaults = {
     ["<C-S-Right>"] = { ":vertical resize +2<Return>", { desc = "Expand split to right" } },
 
     -- Tab create
-    ["<leader>to"] = { ":tabnew<Return>", { desc = "Open  a new tab" } },
+    ["<leader>to"] = {
+      function()
+        vim.cmd("tabnew")
+        vim.cmd("tcd " .. vim.fn.getcwd())
+      end,
+      { desc = "Open a new tab in cwd" },
+    },
     ["<leader>tx"] = { ":tabclose<Return>", { desc = "Close a new tab" } },
 
     -- Tab movement
