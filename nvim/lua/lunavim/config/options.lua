@@ -79,3 +79,16 @@ vim.opt.termguicolors = true
 vim.opt.background = "dark"
 -- Show sign column so that text doesn't shift
 vim.opt.signcolumn = "yes"
+
+-- neovide
+if vim.g.neovide then
+  vim.o.guifont = "Maple Mono NF CN:12"
+  vim.g.neovide_line_spacing = 0.1
+  vim.g.neovide_scale_factor = 1.0
+
+  local change_scale_factor = function(delta) vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta end
+
+  vim.keymap.set("n", "<D-->", function() change_scale_factor(1 / 1.05) end)
+  vim.keymap.set("n", "<D-=>", function() change_scale_factor(1.05) end)
+  vim.keymap.set("n", "<D-+>", function() vim.g.neovide_line_spacing = 1 end)
+end
