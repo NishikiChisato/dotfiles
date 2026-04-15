@@ -82,6 +82,8 @@ vim.opt.signcolumn = "yes"
 
 -- neovide
 if vim.g.neovide then
+  vim.g.neovide_input_macos_option_is_meta = true
+  vim.g.neovide_input_macos_option_key_is_meta = "both"
   vim.o.guifont = "Maple Mono NF CN:12"
   vim.g.neovide_line_spacing = 0.1
   vim.g.neovide_scale_factor = 1.0
