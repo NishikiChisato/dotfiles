@@ -93,4 +93,5 @@ if vim.g.neovide then
   vim.keymap.set("n", "<D-->", function() change_scale_factor(1 / 1.05) end)
   vim.keymap.set("n", "<D-=>", function() change_scale_factor(1.05) end)
   vim.keymap.set("n", "<D-+>", function() vim.g.neovide_line_spacing = 1 end)
+  vim.keymap.set("n", "<F11>", function() vim.g.neovide_fullscreen = not vim.g.neovide_fullscreen end)
 end
