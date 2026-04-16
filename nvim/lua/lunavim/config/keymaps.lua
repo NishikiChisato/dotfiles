@@ -102,10 +102,10 @@ local defaults = {
 
   term_mode = {
     -- Terminal window navigation
-    ["<C-h>"] = { "<C-\\><C-N><C-w>h", { desc = "Move to left window" } },
+    -- ["<C-h>"] = { "<C-\\><C-N><C-w>h", { desc = "Move to left window" } },
     ["<C-j>"] = { "<C-\\><C-N><C-w>j", { desc = "Move to lower window" } },
     ["<C-k>"] = { "<C-\\><C-N><C-w>k", { desc = "Move to upper window" } },
-    ["<C-l>"] = { "<C-\\><C-N><C-w>l", { desc = "Move to right window" } },
+    -- ["<C-l>"] = { "<C-\\><C-N><C-w>l", { desc = "Move to right window" } },
   },
 }
 
