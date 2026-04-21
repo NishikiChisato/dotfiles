@@ -164,7 +164,7 @@ local plugins = {
   },
   ["lsp"] = {
     { "K", function() vim.lsp.buf.hover({ border = "rounded" }) end, { desc = "Hover", mode = "n" } },
-    { "<C-k>", function() vim.lsp.buf.signature_help({ border = "rounded" }) end, { desc = "Signature help", mode = "i" } },
+    { "<C-k>", function() vim.lsp.buf.signature_help({ border = "rounded" }) end, { desc = "Signature help", mode = "n" } },
   },
   ["persistence.nvim"] = {
     { "<leader>ws", function() require("persistence").save() end, { desc = "Save Session" }, },
