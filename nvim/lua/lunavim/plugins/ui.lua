@@ -425,4 +425,35 @@ return {
       excluded_filetypes = { "neo-tree", "dashboard", "TelescopePrompt" },
     },
   },
+  {
+    "sindrets/diffview.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFileHistory" },
+    keys = {
+      { "<leader>gd", "<cmd>DiffviewOpen<CR>", desc = "Diffview: View current diff" },
+
+      { "<leader>gw", "<cmd>DiffviewOpen -w<CR>", desc = "Diffview: Ignore format commit" },
+
+      { "<leader>gh", "<cmd>DiffviewFileHistory %<CR>", desc = "Diffview: History for current file" },
+
+      { "<leader>gc", "<cmd>DiffviewClose<CR>", desc = "Diffview: Close Dashboard" },
+    },
+    opts = {
+      enhanced_diff_hl = true,
+      view = {
+        default = {
+          layout = "diff2_horizontal",
+        },
+        file_history = {
+          layout = "diff2_horizontal",
+        },
+      },
+      file_panel = {
+        listing_style = "tree",
+        tree_options = {
+          flatten_dirs = true,
+        },
+      },
+    },
+  },
 }
