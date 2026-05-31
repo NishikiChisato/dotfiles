@@ -80,10 +80,10 @@ local defaults = {
     ["<leader>tL"] = { ":tabm +1<Return>", { desc = "Move tab to right" } },
 
     -- tags
-    ["<C-N>"] = { "<C-I>", { desc = "Jump to next" } },
-    ["<C-P>"] = { "<C-O>", { desc = "Jump to prev" } },
-    ["<]]>"] = { "<C-I>", { desc = "Jump to next" } },
-    ["<[[]]>"] = { "<C-O>", { desc = "Jump to prev" } },
+    ["<C-N>"] = { "<C-i>", { desc = "Jump to next" } },
+    ["<C-P>"] = { "<C-o>", { desc = "Jump to prev" } },
+    ["]]"] = { "<C-i>", { desc = "Jump to next" } },
+    ["[["] = { "<C-o>", { desc = "Jump to prev" } },
 
     ["<leader>nh"] = { ":nohl<Return>", { desc = "No highlight" } },
 
@@ -153,8 +153,8 @@ local plugins = {
     { "<leader>th", function() Snacks.terminal(nil, { win = { position = "bottom" } }) end, { desc = "Toggle Terminal (Bottom)" } },
     { "<leader>tv", function() Snacks.terminal(nil, { win = { position = "right" } }) end, { desc = "Toggle Terminal (Right)" } },
     { "<leader>z", function() Snacks.zen() end, { desc = "Toggle Zen Mode" } },
-    { "]]", function() Snacks.words.jump(vim.v.count1) end, { desc = "Next Reference", mode = { "n", "t" } } },
-    { "[[", function() Snacks.words.jump(-vim.v.count1) end, { desc = "Prev Reference", mode = { "n", "t" } } },
+    -- { "]]", function() Snacks.words.jump(vim.v.count1) end, { desc = "Next Reference", mode = { "n", "t" } } },
+    -- { "[[", function() Snacks.words.jump(-vim.v.count1) end, { desc = "Prev Reference", mode = { "n", "t" } } },
   },
   ["mini.surround"] = {
     add       = ",a", -- add:       ,a + textobj +    sign
