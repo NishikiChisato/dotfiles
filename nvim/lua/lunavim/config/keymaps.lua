@@ -82,6 +82,8 @@ local defaults = {
     -- tags
     ["<C-N>"] = { "<C-I>", { desc = "Jump to next" } },
     ["<C-P>"] = { "<C-O>", { desc = "Jump to prev" } },
+    ["<]]>"] = { "<C-I>", { desc = "Jump to next" } },
+    ["<[[]]>"] = { "<C-O>", { desc = "Jump to prev" } },
 
     ["<leader>nh"] = { ":nohl<Return>", { desc = "No highlight" } },
 
